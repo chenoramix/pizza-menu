@@ -48,7 +48,8 @@ function App() {
   return (
     <div>
       <Header />
-      <Pizza />
+      <Menu />
+      <Footer />
     </div>
   )
 }
@@ -57,9 +58,18 @@ function Header() {
   return <h1>Fast React Pizza Co.</h1>
 }
 
-function Menu() {}
+function Menu() {
+  return (
+    <div>
+      <h2>Our Menu</h2>
+      <Pizza />
+    </div>
+  )
+}
 
-function Footer() {}
+function Footer() {
+  return <footer>{new Date().toLocaleTimeString()} We're currently open</footer>
+}
 
 function Pizza() {
   return (
