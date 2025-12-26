@@ -45,12 +45,12 @@ const pizzaData = [
 
 function App() {
   return (
-    <div className = "container">
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
     </div>
-  )
+  );
 }
 
 function Header() {
@@ -61,31 +61,47 @@ function Header() {
     <header className="header">
       <h1 style={style}>Fast React Pizza Co.</h1>
     </header>
-  )
+  );
 }
 
 function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza name = "Pizza Spinaci" ingredients = "Tomato, mozarella, spinach, and ricotta cheese"
-       photoName = "pizzas/spinaci.jpg" price = {10}/>
-      <Pizza name = "Funghi" ingredients = "Tomato, mushrooms" price = {12} photoName = "pizzas/funghi.jpg"/>
+
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObject={pizza} key={pizza.name} />
+        ))}
+      </ul>
+
+      {/* <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={10}
+      />
+      <Pizza
+        name="Funghi"
+        ingredients="Tomato, mushrooms"
+        price={12}
+        photoName="pizzas/funghi.jpg"
+      /> */}
     </main>
-  )
+  );
 }
 
 function Pizza(props) {
   return (
-    <div className = "pizza">
-      <img src = {props.photoName} alt = {props.name} />
+    <li className="pizza">
+      <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price + 3}</span>
+        <h3>{props.pizzaObject.name}</h3>
+        <p>{props.pizzaObject.ingredients}</p>
+        <span>{props.pizzaObject.price}</span>
       </div>
-    </div>
-  )
+    </li>
+  );
 }
 
 function Footer() {
@@ -95,7 +111,11 @@ function Footer() {
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
-  return <footer className="footer">{new Date().toLocaleTimeString()} We're currently open</footer>
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} We're currently open
+    </footer>
+  );
 }
 
-export default App
+export default App;
